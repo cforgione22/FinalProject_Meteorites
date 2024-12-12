@@ -20,16 +20,16 @@ public class Meteorite  {
    }
     @Override
     public String toString() {
-        return "\nname: " + name + ", " +
-                " \nid: " + id + ", " + "\n"
-                + "nametype: " + nametype + ", " + "\n"
-                + "recclass: " + recclass + ", " + "\n"
-                + "mass: " + mass + ", " + "\n"
-                + "fall: " + fall + ", " + "\n"
-                + "year: " + year + ", " + "\n"
-                + "reclat: " + reclat + ", " + "\n"
-                + "reclong: " + reclong + ", " + "\n"
-                + "geolocation: {" + geolocation + "\n";
+        return "\nName: " + name + ", " +
+                " \nID: " + id + ", " + "\n"
+                + "Nametype: " + nametype + ", " + "\n"
+                + "Recclass: " + recclass + ", " + "\n"
+                + "Mass: " + mass + ", " + "\n"
+                + "Fall: " + fall + ", " + "\n"
+                + "Year: " + year + ", " + "\n"
+                + "Reclat: " + reclat + ", " + "\n"
+                + "Reclong: " + reclong + ", " + "\n"
+                + "Geolocation: {" + geolocation + "\n";
     }
 
     public String getYear() {

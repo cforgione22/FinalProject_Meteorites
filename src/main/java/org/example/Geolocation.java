@@ -10,8 +10,8 @@ public class Geolocation {
 
     @Override
     public String toString() {
-        return "\n  type: " + type + ", " + "\n" +
-                "  coordinates: " + Arrays.toString(coordinates) + " }";
+        return "\n  Type: " + type + ", " + "\n" +
+                " Coordinates: " + Arrays.toString(coordinates) + " }";
     }
 
     public double[] getCoordinates() {
