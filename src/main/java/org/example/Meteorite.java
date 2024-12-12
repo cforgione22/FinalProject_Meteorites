@@ -1,19 +1,19 @@
 package org.example;
-
-public class Meteorite {
+import com.google.gson.Gson;
+public class Meteorite  {
     private String name;
     private int id;
     private String nametype;
     private String recclass;
     private double mass;
     private String fall;
-    private int year;
+    private String year;
     private long reclat;
     private long reclong;
     private Geolocation geolocation;
 
 
-   public String display (String name, int id, String recclass, double mass, int year) {
+   public String display (String name, int id, String recclass, double mass, String year) {
        String result = " ";
 
        return result;
@@ -23,7 +23,7 @@ public class Meteorite {
         return super.toString();
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -35,7 +35,7 @@ public class Meteorite {
         return recclass;
     }
 
-    public long getreclong() {
+    public long getReclong() {
         return reclong;
     }
 
