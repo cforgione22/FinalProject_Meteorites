@@ -11,6 +11,7 @@ public class Main {
    UserInterface userInterface = new UserInterface();
 
     userInterface.go();
+    userInterface.menu();
 
     }
 }
