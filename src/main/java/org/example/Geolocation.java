@@ -1,17 +1,20 @@
 package org.example;
 import com.google.gson.Gson;
 
+import java.util.Arrays;
+
 public class Geolocation {
    private String type;
-   private long[] coordinates;
+   private double[] coordinates;
 
 
     @Override
     public String toString() {
-        return super.toString();
+        return "\n  type: " + type + ", " + "\n" +
+                "  coordinates: " + Arrays.toString(coordinates) + " }";
     }
 
-    public long[] getCoordinates() {
+    public double[] getCoordinates() {
         return coordinates;
     }
 

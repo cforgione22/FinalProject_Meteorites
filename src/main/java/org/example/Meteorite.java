@@ -8,8 +8,8 @@ public class Meteorite  {
     private double mass;
     private String fall;
     private String year;
-    private long reclat;
-    private long reclong;
+    private double reclat;
+    private double reclong;
     private Geolocation geolocation;
 
 
@@ -20,14 +20,23 @@ public class Meteorite  {
    }
     @Override
     public String toString() {
-        return super.toString();
+        return "\nname: " + name + ", " +
+                " \nid: " + id + ", " + "\n"
+                + "nametype: " + nametype + ", " + "\n"
+                + "recclass: " + recclass + ", " + "\n"
+                + "mass: " + mass + ", " + "\n"
+                + "fall: " + fall + ", " + "\n"
+                + "year: " + year + ", " + "\n"
+                + "reclat: " + reclat + ", " + "\n"
+                + "reclong: " + reclong + ", " + "\n"
+                + "geolocation: {" + geolocation + "\n";
     }
 
     public String getYear() {
         return year;
     }
 
-    public long getReclat() {
+    public double getReclat() {
         return reclat;
     }
 
@@ -35,7 +44,7 @@ public class Meteorite  {
         return recclass;
     }
 
-    public long getReclong() {
+    public double getReclong() {
         return reclong;
     }
 
