@@ -8,48 +8,38 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-
-    public void go() {
-
-        {
-            try {
-                FileReader reader = new FileReader("NASA_Meteorite.json");
-                Gson gson = new Gson();
-                Meteorite[] meteorites = gson.fromJson(reader, Meteorite[].class);
-                System.out.println(Arrays.toString(meteorites));
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-
-            }
+    public Meteorite[] optionOne() {
+        try {
+            FileReader reader = new FileReader("NASA_Meteorite.json");
+            Gson gson = new Gson();
+            return gson.fromJson(reader, Meteorite[].class);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
-    public int menu() {
-        Scanner in = new Scanner(System.in);
+
+    public void optionTwo(Meteorite[] meteorites) {
+        System.out.println(Arrays.toString(meteorites));
+    }
+
+    public void go() {
+        Meteorite[] meteorites = null;
+
         int choice;
         do {
-            System.out.println("\n\nWelcome ot the NASA Metorite treacking database.\n");
-            System.out.println("0) Quit");
-            System.out.println("1) Import data from a JSON file");
-            System.out.println("2) Display the meteorite data");
-            System.out.println("3) Export the meteorite data to a file");
-            System.out.println("4) Find a meteorite by name");
-            System.out.println("5) Fina a meteorite by ID");
-            System.out.println("6) List the largest meteorite");
-            System.out.println("7) List the most recent meteorites by year");
-            System.out.println("8) List the meteorite classes");
-            System.out.print("Enter your choice: ");
-            choice = in.nextInt();
+            choice = getUserOption();
 
             switch (choice) {
                 case 0:
                     System.out.println("0) Quit");
                     break;
                 case 1:
-                    System.out.println("1) Import data from a JSON file");
+                    meteorites = optionOne();
                     break;
                 case 2:
-                    System.out.println("2) Display the meteorite data");
+                    optionTwo(meteorites);
                     break;
                 case 3:
                     System.out.println("3) Export the meteorite data to a file");
@@ -71,10 +61,27 @@ public class UserInterface {
                     break;
                 default:
                     System.out.println("\n...Try again");
-
             }
 
         } while (choice > 0 || choice <= 8 );
-        return choice;
     }
+
+    private int getUserOption() {
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("\n\nWelcome ot the NASA Meteorite tracking database.\n");
+        System.out.println("0) Quit");
+        System.out.println("1) Import data from a JSON file");
+        System.out.println("2) Display the meteorite data");
+        System.out.println("3) Export the meteorite data to a file");
+        System.out.println("4) Find a meteorite by name");
+        System.out.println("5) Fina a meteorite by ID");
+        System.out.println("6) List the largest meteorite");
+        System.out.println("7) List the most recent meteorites by year");
+        System.out.println("8) List the meteorite classes");
+        System.out.print("Enter your choice: ");
+
+        return in.nextInt();
+    }
+
 }
