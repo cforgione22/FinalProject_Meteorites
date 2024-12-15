@@ -1,9 +1,10 @@
 package org.example;
 import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Geolocation {
+public class Geolocation implements Serializable {
    private String type;
    private double[] coordinates;
 

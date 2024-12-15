@@ -1,8 +1,9 @@
 package org.example;
 
 import com.google.gson.Gson;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+
+import javax.swing.*;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -19,12 +20,34 @@ public class UserInterface {
         return null;
     }
 
-
     public void optionTwo(Meteorite[] meteorites) {
         System.out.println(Arrays.toString(meteorites));
     }
 
-    public void go() {
+    public void optionThree(Meteorite[] meteorites) {
+        try {
+            FileOutputStream fos = new FileOutputStream("saveFile");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(meteorites);
+            System.out.println("\n*.*.*.*MISSION COMPLETE*.*.*.*");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void optionFour(Meteorite[] meteorites) {
+        Scanner userInput = new Scanner(System.in);
+        System.out.print("\nEnter the name of the meteorite: ");
+        String meteoriteName = userInput.nextLine().toUpperCase();
+        for (Meteorite meteorite : meteorites) {
+            if (meteorite.getName().toUpperCase().equals(meteoriteName)) {
+               System.out.println(meteorite.display());
+               break;
+            }
+        }
+    }
+
+    public void go()  {
         Meteorite[] meteorites = null;
 
         int choice;
@@ -42,10 +65,10 @@ public class UserInterface {
                     optionTwo(meteorites);
                     break;
                 case 3:
-                    System.out.println("3) Export the meteorite data to a file");
+                    optionThree(meteorites);
                     break;
                 case 4:
-                    System.out.println("4) Find a meteorite by name");
+                    optionFour(meteorites);
                     break;
                 case 5:
                     System.out.println("5) Fina a meteorite by ID");

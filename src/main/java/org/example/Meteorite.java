@@ -1,7 +1,11 @@
 package org.example;
 import com.google.gson.Gson;
-public class Meteorite  {
-    private String name;
+
+import java.io.NotSerializableException;
+import java.io.Serializable;
+
+public class Meteorite implements Serializable {
+    public String name;
     private int id;
     private String nametype;
     private String recclass;
@@ -13,10 +17,12 @@ public class Meteorite  {
     private Geolocation geolocation;
 
 
-   public String display (String name, int id, String recclass, double mass, String year) {
-       String result = " ";
-
-       return result;
+   public String display () {
+       return "name = " + name + ", "
+               + "id = " + id + ", "
+               + "recclass = " + recclass + ", "
+               + "mass = " + mass + ", "
+               + "year = " + year;
    }
     @Override
     public String toString() {
