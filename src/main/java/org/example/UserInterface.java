@@ -1,11 +1,15 @@
 package org.example;
 
+
 import com.google.gson.Gson;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.sql.Timestamp;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class UserInterface {
 
@@ -39,12 +43,49 @@ public class UserInterface {
         Scanner userInput = new Scanner(System.in);
         System.out.print("\nEnter the name of the meteorite: ");
         String meteoriteName = userInput.nextLine().toUpperCase();
-        for (Meteorite meteorite : meteorites) {
-            if (meteorite.getName().toUpperCase().equals(meteoriteName)) {
-               System.out.println(meteorite.display());
-               break;
-            }
+        List<Meteorite> list = Arrays.asList(meteorites);
+        Meteorite meteorite = list.stream().filter(m -> m.getName().toUpperCase().equals(meteoriteName)).findFirst().orElse(null);
+        if (meteorite != null) {
+            System.out.println(meteorite.display());
+        } else {
+            System.out.println("Not Valid, please try again.");
         }
+    }
+
+
+
+   public void optionFive(Meteorite[] meteorites) {
+       Scanner userInput = new Scanner(System.in);
+       System.out.print("\nEnter the ID of the meteorite: ");
+       int id = userInput.nextInt();
+
+       List<Meteorite> list = Arrays.asList(meteorites);
+       Meteorite meteorite = list.stream().filter(m -> m.getId() == id).findFirst().orElse(null);
+       if (meteorite != null) {
+           System.out.println(meteorite.display());
+       } else {
+           System.out.println("Not Valid, please try again.");
+       }
+   }
+
+    public void optionSix(Meteorite [] meteorites)
+    {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("\nHow many of the largest meteorites do you want to see? ");
+        int numOfLargeMeteorites = userInput.nextInt();
+
+        List<Meteorite> meteoriteArrayList = Arrays.asList(meteorites);  //Conversion of array to array list
+        meteoriteArrayList.stream().sorted((m1, m2) -> m1.getMass() > m2.getMass() ? -1 : 1).limit(numOfLargeMeteorites).forEach(m -> System.out.println(m.display()));
+    }
+
+    public void optionSeven(Meteorite [] meteorites)
+    {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("\nHow many of the most recent meteorites do you want to see? ");
+        int numOfRecentMeteorites = userInput.nextInt();
+
+        List<Meteorite> meteoriteArrayList = Arrays.asList(meteorites);  //Conversion of array to array list
+        meteoriteArrayList.stream().sorted((m1, m2) -> m1.getYear() > m2.getYear() ? -1 : 1).limit(numOfRecentMeteorites).forEach(m -> System.out.println(m.display()));
     }
 
     public void go()  {
@@ -71,13 +112,13 @@ public class UserInterface {
                     optionFour(meteorites);
                     break;
                 case 5:
-                    System.out.println("5) Fina a meteorite by ID");
+                    optionFive(meteorites);
                     break;
                 case 6:
-                    System.out.println("6) List the largest meteorite");
+                    optionSix(meteorites);
                     break;
                 case 7:
-                    System.out.println("7) List the most recent meteorites by year");
+                    optionSeven(meteorites);
                     break;
                 case 8:
                     System.out.println("8) List the meteorite Classes");

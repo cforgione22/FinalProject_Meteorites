@@ -1,5 +1,4 @@
 package org.example;
-import com.google.gson.Gson;
 
 import java.io.NotSerializableException;
 import java.io.Serializable;
@@ -22,7 +21,7 @@ public class Meteorite implements Serializable {
                + "id = " + id + ", "
                + "recclass = " + recclass + ", "
                + "mass = " + mass + ", "
-               + "year = " + year;
+               + "year = " + getYear();
    }
     @Override
     public String toString() {
@@ -32,13 +31,25 @@ public class Meteorite implements Serializable {
                 + "Recclass: " + recclass + ", " + "\n"
                 + "Mass: " + mass + ", " + "\n"
                 + "Fall: " + fall + ", " + "\n"
-                + "Year: " + year + ", " + "\n"
+                + "Year: " + getYear() + ", " + "\n"
                 + "Reclat: " + reclat + ", " + "\n"
                 + "Reclong: " + reclong + ", " + "\n"
                 + "Geolocation: {" + geolocation + "\n";
     }
 
-    public String getYear() {
+    public int getYear() {
+        return timestampStringToInt(year);
+    }
+
+    private int timestampStringToInt(String yearStr) {
+        String timeStamp = yearStr != null ? yearStr : "";
+        String[] timeStampArr = timeStamp.split("-");
+
+        int year = 0;
+        try {
+            year = Integer.valueOf(timeStampArr[0]);
+        } catch (NumberFormatException e) { }
+
         return year;
     }
 
